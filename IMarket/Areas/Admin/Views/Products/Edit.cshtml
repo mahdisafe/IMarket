@@ -1,0 +1,81 @@
+﻿@model IMarket.Models.Db.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+<div class="panel panel-info">
+    <div class="panel panel-heading  ">Create New</div>
+    @using (Html.BeginForm("Edit", "Products"))
+    {
+        <div class="panel-body">
+            <div class="row">
+
+                @Html.AntiForgeryToken()
+
+                <div>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="col col-md-4">
+                        Name
+                        <div>
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col col-md-12">
+                        Description
+                        <div>
+                            @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @row = "3", @Col = "3" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col col-md-4">
+                        SKU
+                        <div>
+                            @Html.EditorFor(model => model.SKU, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SKU, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col col-md-4">
+                        Image
+                        <div>
+                            @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col col-md-4">
+                        CategoryId
+                        <div>
+                            @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div>
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </div>
+
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

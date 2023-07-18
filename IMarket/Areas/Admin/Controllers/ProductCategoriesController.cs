@@ -52,6 +52,7 @@ namespace IMarket.Areas.Admin.Controllers
             {
                 productCategory.IsDeleted = false;
                 productCategory.Create=DateTime.Now;
+                productCategory.LastUpdate=DateTime.Now;
                 db.ProductCategory.Add(productCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");

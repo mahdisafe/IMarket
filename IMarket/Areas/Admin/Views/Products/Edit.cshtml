@@ -10,7 +10,7 @@
 
 <div class="panel panel-info">
     <div class="panel panel-heading  ">Create New</div>
-    @using (Html.BeginForm("Edit", "Products"))
+    @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="panel-body">
             <div class="row">
@@ -27,7 +27,27 @@
                             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
+                    <div class="col col-md-4">
+                        SKU
+                        <div>
+                            @Html.EditorFor(model => model.SKU, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SKU, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col col-md-4">
+                        Price
+                        <div>
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col col-md-4">
+                        Qty
+                        <div>
+                            @Html.EditorFor(model => model.Qty, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Qty, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                     <div class="col col-md-12">
                         Description
                         <div>
@@ -36,18 +56,13 @@
                         </div>
                     </div>
 
-                    <div class="col col-md-4">
-                        SKU
-                        <div>
-                            @Html.EditorFor(model => model.SKU, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.SKU, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+
 
                     <div class="col col-md-4">
                         Image
                         <div>
-                            @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" ,@type="file"} })
+                            <div>  <img src="~/Assets/@Model.Image" style="width:180px;" class="img-thumbnail" /></div>
                             @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -69,7 +84,9 @@
         </div>
         <div class="panel-footer">
             <div>
-                <input type="submit" value="Save" class="btn btn-success" />
+                <input  type="submit" value="Save" class="btn btn-success"/>
+                <a class="btn btn-default" href="@Url.Action("Index", "Products")">Back</a>
+
             </div>
         </div>
 

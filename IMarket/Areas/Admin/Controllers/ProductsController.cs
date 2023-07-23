@@ -49,15 +49,23 @@ namespace IMarket.Areas.Admin.Controllers
  
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( Product product)
+        public ActionResult Create( Product product , HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
+                if (Image != null)
+                {
+                    var fileName = Image.FileName;
+                    Image.SaveAs(Server.MapPath("~/Assets/" + fileName));
+                    product.Image = fileName;
+                }
                 product.IsDeleted = false;
                 product.Create=DateTime.Now;
                 product.LastUpdate=DateTime.Now;
+                 
                 db.Product.Add(product);
                 db.SaveChanges();
+                TempData["Product"] = "Car has been added ";
                 return RedirectToAction("Index");
             }
 
@@ -91,6 +99,7 @@ namespace IMarket.Areas.Admin.Controllers
                 product.LastUpdate=DateTime.Now;
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Product"] = $"car {product.Name} has been Updated ";
                 return RedirectToAction("Index");
             }
             ViewBag.CategoryId = new SelectList(db.ProductCategory.Where(x=>x.IsDeleted==false), "Id", "Name", product.CategoryId);

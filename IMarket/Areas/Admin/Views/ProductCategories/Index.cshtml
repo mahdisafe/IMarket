@@ -9,14 +9,14 @@
 <div class="panel panel-info">
     <div class="panel-heading">List of Category</div>
     <div class="panel panel-body">
-        <table class="table">
-            <tr>
+        <table class="table" id="tbl">
+            <thead>            <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
  
                 <th></th>
-            </tr>
+            </tr></thead>
 
             @foreach (var item in Model) {
                 <tr>

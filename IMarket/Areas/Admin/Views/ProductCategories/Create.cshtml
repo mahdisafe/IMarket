@@ -1,25 +1,16 @@
 ﻿@model IMarket.Models.Db.ProductCategory
-
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
- 
-<div class="panel panel-info">
-    <div class="panel-heading"></div>
-    <div class="panel panel-body">
-
-    </div>
-</div>
 <div class="panel panel-info">
     <div class="panel-heading"> Create New Product </div>
+    @using (Html.BeginForm("Create","ProductCategories"))
+    {
     <div class="panel panel-body">
-        @using (Html.BeginForm())
-        {
+
             @Html.AntiForgeryToken()
-
             <div class="row">
-
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="col col-md-4">
                     Name
@@ -28,22 +19,17 @@
                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-
-
-                <div class="col col-md-4">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-</div>
-
-
-
  
+            </div>
+        
+    </div>
+    <div class="panel-footer">
+        <input  type="submit" value="Save" class="btn btn-success"/>
+        <a class="btn btn-default" href="@Url.Action("Index", "ProductCategories")">Back</a>
+    </div>
+
+    }
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

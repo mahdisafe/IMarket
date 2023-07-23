@@ -15,10 +15,15 @@ namespace IMarket.Models.Db
         [Required(ErrorMessage = "Please Enter SKU")]
         public string SKU { get; set; }
         public string Image { get; set; }
-
+        [Required(ErrorMessage = "Please Enter Qty")]
+        public int Qty { get; set; }
+        [Required(ErrorMessage = "Please Enter Price")]
+        public double Price { get; set; }
 
         public int CategoryId { get; set; }
         [ForeignKey(nameof(CategoryId))]
         public virtual ProductCategory ProductCategory { get; set; }
+
+        public int? Model { get; set; }
     }
 }

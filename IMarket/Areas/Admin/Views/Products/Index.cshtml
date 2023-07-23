@@ -5,72 +5,76 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+ @if (TempData["Product"] != null)
+ {
+     <div class="alert alert-info">@TempData["Product"]</div>
+ }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductCategory.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SKU)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Create)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastUpdate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </th>
-        <th></th>
-    </tr>
+<div>
+    <a class="btn btn-success" href="@Url.Action("Create")">Create New</a>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductCategory.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SKU)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Create)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastUpdate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDeleted)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
 
-</table>
+<div class="panel panel-info">
+    <div class="panel-heading">Product List</div>
+    <div class="panel panel-body">
+        <table class="table" id="tbl">
+            <thead>
+            <tr>
+                <th>
+                    Image 
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Name
+                </th>
+
+                <th>
+                    SKU
+                </th>
+
+                <th></th>
+            </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.Image != null)
+                        {
+                            <img style="width:180px;border-image" src="~/Assets/@item.Image"  class="img img-thumbnail"/>
+                        }
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductCategory.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SKU)
+                    </td>
+
+                    <td>
+                        <a style="border-radius:10px" class="btn btn-success" href="@Url.Action("Edit", "Products", new {id = item.Id})"> Update </a>
+
+                        <a style="border-radius:10px" class="btn btn-danger" href="@Url.Action("Delete", "Products", new {id = item.Id})"> Delete </a>
+                        <a style="border-radius:10px" class="btn btn-info" href="@Url.Action("Details", "Products", new {id = item.Id})"> Details </a>
+
+
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+ 
+

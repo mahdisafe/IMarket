@@ -4,79 +4,52 @@
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+<div class="panel panel-info">
+    <div class="panel-heading"></div>
+    <div class="panel panel-body">
+        <div class="row">
 
-<h2>Details</h2>
+            @if(Model.Image!=null)
+                {
+                    <img  src="~/Assets/@Model.Image" style="width:180px" class="img-thumbnail"/>
+                }
+            <div class="col-md-6">
+                <div>Category</div>
+                @Model.ProductCategory.Name
+            </div>
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductCategory.Name)
-        </dt>
+            <div class="col-md-6">
+                <div>Name</div>
+                @Model.Name
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductCategory.Name)
-        </dd>
+            <div class="col-md-6">
+                <div>Price</div>
+                @Model.Price
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <div class="col-md-6">
+                <div>Qty</div>
+                @Model.Qty
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <div class="col-md-6">
+                <div>SKU</div>
+                @Model.SKU
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SKU)
-        </dt>
+            <div class="col-md-12">
+                <div>Description</div>
+                @Model.Description
+            </div>
+            
 
-        <dd>
-            @Html.DisplayFor(model => model.SKU)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Create)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Create)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastUpdate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastUpdate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-
-    </dl>
+        </div>
+    </div>
 </div>
+ 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")

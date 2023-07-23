@@ -5,85 +5,34 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+ 
 <div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductCategory.Name)
-        </dt>
+    <div class="panel panel-info">
+        <div class="panel-heading"> <p>Are you sure you want to delete this? @Model.Name</p> </div>
+        <div class="panel panel-body">
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductCategory.Name)
-        </dd>
+            <div class="alert alert-info">
+                
+                <div class="row">
+                    <div class="col-lg-2"><div>Name</div> @Model.Name</div>
+                    <div class="col-lg-2"><div>Category</div> @Model.ProductCategory.Name</div>
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SKU)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SKU)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Create)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Create)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastUpdate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastUpdate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
         </div>
-    }
+        <div class="panel panel-footer">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+            <div class="form-actions no-color">
+               <input type="submit" class="btn btn-danger" value="Delete"/>
+                <a class="btn btn-default" href="@Url.Action("Index", "Products")">Back to List</a>
+              
+            </div>
+
+            }
+        </div>
+    </div>
+
 </div>

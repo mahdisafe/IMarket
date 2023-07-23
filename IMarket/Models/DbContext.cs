@@ -19,6 +19,9 @@ namespace IMarket.Models
          public virtual DbSet<Product> Product { get; set; }
          public virtual DbSet<ProductCategory> ProductCategory { get; set; }
 
+         public virtual DbSet<Customer>Customers { get; set; }
+
+
 
     }
 }
